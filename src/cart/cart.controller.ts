@@ -8,7 +8,7 @@ export class CartController {
   ) { }
 
   @Get()
-  async findAll() {
+  async getAllCarts() {
     const carts = await this.cartService.findAll();
 
     return {
@@ -19,7 +19,7 @@ export class CartController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async getCartById(@Param('id') id: string) {
     const cart = await this.cartService.findOne(id);
       
     return {

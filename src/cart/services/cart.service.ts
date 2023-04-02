@@ -1,18 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Carts } from '../../database/entities/carts.entity';
+import { Cart } from '../../database/entities/cart.entity';
 
 @Injectable()
 export class CartService {
   constructor(
-    @InjectRepository(Carts)
-    private readonly cartsRepository: Repository<Carts>,
+    @InjectRepository(Cart)
+    private readonly cartRepository: Repository<Cart>,
   ) {}
 
   async findAll() {
     try {
-      const carts = await this.cartsRepository.find();
+      const carts = await this.cartRepository.find();
       return carts;
     } catch (err) {
       throw new NotFoundException();
@@ -21,7 +21,7 @@ export class CartService {
 
   async findOne(id: string) {
     try {
-      const cart = await this.cartsRepository.findOneBy({ id });
+      const cart = await this.cartRepository.findOneBy({ id });
       return cart;
     } catch (err) {
       throw new NotFoundException();
@@ -29,7 +29,7 @@ export class CartService {
   }
 
   // async findAllProductsForCart(id: string) {
-  //   return this.cartsRepository.findOne(
+  //   return this.cartRepository.findOne(
   //     { id },
   //     {
   //       relations: ['products'],
@@ -39,7 +39,7 @@ export class CartService {
 
   // async create(createCartsDto: CreateCartsDto) {
   //   try {
-  //     await this.CartsRepository.insert(createCartsDto);
+  //     await this.cartRepository.insert(createCartsDto);
   //   } catch (e) {
   //     return false;
   //   }
@@ -48,7 +48,7 @@ export class CartService {
 
   // async update(id: string, updateCartsDto: UpdateCartsDto) {
   //   try {
-  //     await this.cartsRepository.update({ id }, updateCartsDto);
+  //     await this.cartRepository.update({ id }, updateCartsDto);
   //   } catch (e) {
   //     return false;
   //   }
@@ -57,7 +57,7 @@ export class CartService {
 
   // async remove(id: string) {
   //   try {
-  //     await this.cartsRepository.delete({ id });
+  //     await this.cartRepository.delete({ id });
   //   } catch (e) {
   //     return false;
   //   }

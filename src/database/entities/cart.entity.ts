@@ -1,12 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Status } from './enums';
 
-enum Status {
-  OPEN = 'OPEN',
-  ORDERED = 'ORDERED',
-}
-
-@Entity()
-export class Carts {
+@Entity({ name: 'carts' })
+export class Cart {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
