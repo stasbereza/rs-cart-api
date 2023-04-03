@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { CartItem } from './cart-item.entity';
 import { Status } from './enums';
 
 @Entity({ name: 'carts' })
@@ -17,4 +18,8 @@ export class Cart {
 
   @Column({ type: 'enum', enum: Status })
   status: Status;
+
+  @OneToMany(() => CartItem, (item) => item.cart, { cascade: true })
+  @JoinColumn({ name: 'id', referencedColumnName: 'cart_id' })
+  items: CartItem[];
 }

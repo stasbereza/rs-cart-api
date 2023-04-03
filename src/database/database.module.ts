@@ -3,7 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { Cart } from './entities/cart.entity';
-import { CartItems } from './entities/cart-items.entity';
+import { CartItem } from './entities/cart-item.entity';
+import { Order } from './entities/order.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { CartItems } from './entities/cart-items.entity';
         namingStrategy: new SnakeNamingStrategy(),
       })
     }),
-    TypeOrmModule.forFeature([Cart, CartItems]),
+    TypeOrmModule.forFeature([Cart, CartItem, Order]),
   ],
   exports: [TypeOrmModule],
 })
