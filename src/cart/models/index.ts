@@ -5,13 +5,12 @@ export type Product = {
   price: number,
 };
 
-
 export type CartItem = {
   product: Product,
   count: number,
-}
+};
 
 export type Cart = {
   id: string,
   items: CartItem[],
-}
+};
